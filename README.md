@@ -47,3 +47,20 @@ The Cat Coding webview can send the following messages to the extension:
 - `alert`: Sent when the cat introduces a bug. The message includes the text '🐛  on line ' followed by the current line count.
 
 
+
+# old
+
+open the devtools with option+cmd+c
+
+run the following `python -m http.server 8000`
+
+nav to `http://localhost:8000`
+
+todo:
+- all that's left is moving over extension.js
+- put it in a vscode extension
+- code wrapping for newline. for example, `fn divide`...
+  it currently makes everything shrink or grow at its mercy
+- if the code ends on something like `$ }`, then it won't
+  render that line. it might have something to do with
+  the break statement

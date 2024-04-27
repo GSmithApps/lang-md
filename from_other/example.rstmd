@@ -1,0 +1,70 @@
+Function to divide two numbers:
+This function attempts to divide two numbers and returns the result.
+If the divisor is zero, it returns an error.
+
+$ fn divide(numerator: f64, denominator: f64) -> Result<f64, &'static str> {
+
+    Check if the denominator is not zero.
+    Here's an extra line
+
+    $ if denominator != 0.0 {
+        
+        If it's not zero, perform the division and return Ok.
+
+        $ Ok(numerator / denominator)
+        
+    $ } else {
+        
+        If it's zero, return an error indicating division by zero.
+
+        $ Err("Cannot divide by zero")
+    $ }
+$ }
+
+Function to describe a number:
+
+This function takes a number and returns a string describing it.
+
+$ fn describe_number(number: i32) -> String {
+
+    Use pattern matching to determine the nature of the number.
+
+    $ match number {
+
+        Positive numbers are greater than zero.
+
+        $ n if n > 0 $ format!("{} is positive", number),
+        
+        Negative numbers are less than zero.
+
+        $ n if n < 0 $ format!("{} is negative", number),
+        
+        Zero is handled explicitly.
+
+        $ _ $ String::from("It is zero"),
+    $ }
+$ }
+
+Struct representing a person:
+Here we define a struct for a Person and implement a method to display their information.
+
+Define the Person struct with name and age fields.
+
+$ struct Person {
+$     name: String,
+$     age: u8,
+$ }
+
+Implement methods for the Person struct.
+
+$ impl Person {
+
+    This method returns a string with the person's name and age.
+
+    $ fn to_string(&self) -> String {
+        
+        Return a formatted string containing the name and age.
+
+        $ format!("{} is {} years old", self.name, self.age)
+    $ }
+$ }
