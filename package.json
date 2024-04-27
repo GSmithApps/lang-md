@@ -25,11 +25,6 @@
 				"command": "catCoding.start",
 				"title": "Start cat coding session",
 				"category": "Cat Coding"
-			},
-			{
-				"command": "catCoding.doRefactor",
-				"title": "Do some refactoring",
-				"category": "Cat Coding"
 			}
 		]
 	},
