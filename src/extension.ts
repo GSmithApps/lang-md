@@ -135,14 +135,16 @@ class RustMdPanel {
 		// Local path to main script and css styles to run in the webview
 		const styleResetPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css');
 		const stylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css');
+		const myStylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'styles.css');
 		
 		// And the uri we use to load this script and styles in the webview
 		const stylesResetUri = webview.asWebviewUri(styleResetPath);
 		const stylesMainUri = webview.asWebviewUri(stylesPathMainPath);
+		const myStylesMainUri = webview.asWebviewUri(myStylesPathMainPath);
 
         // Get the active text editor's content
         const editor = vscode.window.activeTextEditor;
-        const text = editor ? editor.document.getText() : 'No active editor';
+        const text = editor ? renderContent(editor.document.getText()) : 'No active editor';
 		
 		this._panel.webview.html = `<!DOCTYPE html>
 			<html lang="en">
@@ -153,14 +155,13 @@ class RustMdPanel {
 			
 			<link href="${stylesResetUri}" rel="stylesheet">
 			<link href="${stylesMainUri}" rel="stylesheet">
+			<link href="${myStylesMainUri}" rel="stylesheet">
 			
 			<title>Rust MD</title>
 			</head>
 			<body>
 
-			<h1>Hey Everyone</h1>
-			<p>${text}</p>
-			<div id="content"></div>
+			<div>${text}</div>
 			
 			</body>
 			</html>`;
@@ -170,93 +171,69 @@ class RustMdPanel {
 }
 
 
-// function renderContent(input_text: string) {
-//     const lines = input_text.split('\n');
-//     const container = document.getElementById('content');
+function renderContent(input_text: string) {
 
-//     const colordebug = false;
+	let html_string = '';
 
-//     for (let i = 0; i < lines.length - 1; i++) {
+    const lines = input_text.split('\n');
 
-//         const line = lines[i];
+    const colordebug = false;
+
+    for (let i = 0; i < lines.length - 1; i++) {
+
+        const line = lines[i];
         
-//         const trimmedLine = line.trim();
-//         if (trimmedLine === '') {
-//             const empty = document.createElement('br');
-//             container.appendChild(empty);
-//         } else {
+        const trimmedLine = line.trim();
+        if (trimmedLine === '') {
+			html_string += '<br>';
+        } else {
 
-//             // count the number of spaces at the beginning of the line
-//             let spaces = 0;
-//             while (line[spaces] === ' ') {
-//                 spaces++;
-//             }
+            // count the number of spaces at the beginning of the line
+            let spaces = 0;
+            while (line[spaces] === ' ') {
+                spaces++;
+            }
     
-//             const pre = document.createElement('pre');
-//             const code = document.createElement('code');
-//             pre.style.margin = '0px';
-//             pre.style.padding = '0px';
+            // set the background color to gray if we are in debug mode
+			const colorDebugStyle = colordebug ? 'background-color: lightgray;' : '';
+
+			html_string += `<pre style="margin: 0px; padding: 0px; ${colorDebugStyle}"><code class="language-rust">${' '.repeat(spaces)}</code></pre>`;
             
-//             // set the text content to be the number of spaces
-//             code.textContent = ' '.repeat(spaces);
-            
-//             // set the background color to gray if we are in debug mode
-//             if (colordebug) {code.style.backgroundColor = 'gray'};
-            
-//             container.appendChild(pre);
-//             pre.appendChild(code);
-            
-//             if (trimmedLine.startsWith('$')) {
-//                 const pre = document.createElement('pre');
-//                 const code = document.createElement('code');
-//                 code.className = 'language-rust';
-//                 pre.style.margin = '0px';
-//                 pre.style.padding = '0px';
-//                 pre.style.backgroundColor = 'black';
+            if (trimmedLine.startsWith('$')) {
+
+				const codeColorDebugStyle = colordebug ? 'background-color: lightcoral;' : '';
+
+				html_string += `<pre style="margin: 0px; padding: 0px; ${codeColorDebugStyle}"><code class="language-rust">${trimmedLine.slice(2)}</code></pre>`;
                 
-//                 code.textContent = trimmedLine.slice(2); // Assuming you slice the first two characters to remove '$ '
+                // Adding an empty line after each code block might be unnecessary with `<pre>`, but if needed:
+                // html_string += '<br>';
                 
-//                 // Set the background color to light red if in debug mode
-//                 if (colordebug) {
-//                     pre.style.backgroundColor = 'lightcoral'; // Set on `<pre>` for overall background
-//                 }
+            } else {
+
+				const textDebugStyle = colordebug ? 'background-color: lightblue;' : '';
                 
-//                 container.appendChild(pre);
-//                 pre.appendChild(code);
+                if (i === lines.length - 1) {break;}
                 
-//                 // Adding an empty line after each code block might be unnecessary with `<pre>`, but if needed:
-//                 const empty = document.createElement('br');
-//                 container.appendChild(empty);
+                const nextlineTrimmed = lines[i + 1].trim();
                 
-//             } else {
-//                 const text = document.createElement('span');
-//                 // text.textContent = trimmedLine + ' ';
-//                 text.textContent = trimmedLine;
-//                 // set the background color to light blue if we are in debug mode
-//                 if (colordebug) {text.style.backgroundColor = 'lightblue';}
-                
-//                 if (i === lines.length - 1) {break;}
-                
-//                 const nextlineTrimmed = lines[i + 1].trim();
-                
-//                 if (nextlineTrimmed === '' || nextlineTrimmed.startsWith('$')) {
+                if (nextlineTrimmed === '' || nextlineTrimmed.startsWith('$')) {
                     
-//                     container.appendChild(text);
-//                     const empty = document.createElement('br');
-//                     container.appendChild(empty);
+					html_string += `<span style="${textDebugStyle}">` + trimmedLine + '</span>';
+					html_string += '<br>';
                     
-//                 } else {
+                } else {
+					
+					html_string += `<span style="${textDebugStyle}">` + trimmedLine + " " +  '</span>';
                     
-//                     text.textContent = text.textContent + ' ';
-//                     container.appendChild(text);
-
-//                 }
+                }
                 
-//             }
+            }
 
-//         }
+        }
 
-//     }
+    }
 
-// }
+	return html_string;
+
+}
 
