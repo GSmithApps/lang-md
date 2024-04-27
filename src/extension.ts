@@ -133,29 +133,18 @@ class RustMdPanel {
 		this._panel.title = "RustMd Panel Title";
 		
 		// Local path to main script and css styles to run in the webview
-		const scriptPathOnDisk = vscode.Uri.joinPath(this._extensionUri, 'media', 'main.js');
 		const styleResetPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css');
 		const stylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css');
 		
 		// And the uri we use to load this script and styles in the webview
-		const scriptUri = webview.asWebviewUri(scriptPathOnDisk);
 		const stylesResetUri = webview.asWebviewUri(styleResetPath);
 		const stylesMainUri = webview.asWebviewUri(stylesPathMainPath);
-		
-		// Use a nonce to only allow specific scripts to be run
-		const nonce = getNonce();
 		
 		this._panel.webview.html = `<!DOCTYPE html>
 			<html lang="en">
 			<head>
 			<meta charset="UTF-8">
-			
-			<!--
-			Use a content security policy to only allow loading images from https or from our extension directory,
-			and only allow scripts that have a specific nonce.
-			-->
-			<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; img-src ${webview.cspSource} https:; script-src 'nonce-${nonce}';">
-			
+
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			
 			<link href="${stylesResetUri}" rel="stylesheet">
@@ -164,22 +153,12 @@ class RustMdPanel {
 			<title>Rust MD</title>
 			</head>
 			<body>
-			<img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" width="300" />
-			<h1 id="lines-of-code-counter">0</h1>
+
+			<h1>Hey Everyone</h1>
 			
-			<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 			</html>`;
 
 		return;
 	}
-}
-
-function getNonce() {
-	let text = '';
-	const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	for (let i = 0; i < 32; i++) {
-		text += possible.charAt(Math.floor(Math.random() * possible.length));
-	}
-	return text;
 }
