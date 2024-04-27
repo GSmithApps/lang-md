@@ -22,7 +22,7 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "catCoding.start",
+				"command": "rustmd.start",
 				"title": "Start cat coding session",
 				"category": "Cat Coding"
 			}
