@@ -139,6 +139,10 @@ class RustMdPanel {
 		// And the uri we use to load this script and styles in the webview
 		const stylesResetUri = webview.asWebviewUri(styleResetPath);
 		const stylesMainUri = webview.asWebviewUri(stylesPathMainPath);
+
+        // Get the active text editor's content
+        const editor = vscode.window.activeTextEditor;
+        const text = editor ? editor.document.getText() : 'No active editor';
 		
 		this._panel.webview.html = `<!DOCTYPE html>
 			<html lang="en">
@@ -155,6 +159,7 @@ class RustMdPanel {
 			<body>
 
 			<h1>Hey Everyone</h1>
+			<p>${text}</p>
 			
 			</body>
 			</html>`;
