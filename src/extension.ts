@@ -65,7 +65,7 @@ class RustMdPanel {
 		// Otherwise, create a new panel.
 		const panel = vscode.window.createWebviewPanel(
 			RustMdPanel.viewType,
-			'Cat Coding',
+			'Rust MD',
 			column || vscode.ViewColumn.One,
 			getWebviewOptions(extensionUri),
 		);
@@ -161,7 +161,7 @@ class RustMdPanel {
 			<link href="${stylesResetUri}" rel="stylesheet">
 			<link href="${stylesMainUri}" rel="stylesheet">
 			
-			<title>Cat Coding</title>
+			<title>Rust MD</title>
 			</head>
 			<body>
 			<img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" width="300" />

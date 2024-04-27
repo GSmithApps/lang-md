@@ -1,4 +1,4 @@
-# Cat Coding — A Webview API Sample
+# Rust MD
 
 Demonstrates VS Code's [webview API](https://code.visualstudio.com/api/extension-guides/webview). This includes:
 
@@ -31,17 +31,17 @@ Demonstrates VS Code's [webview API](https://code.visualstudio.com/api/extension
 - `npm run watch` or `npm run compile`
 - `F5` to start debugging
 
-Run the `Cat Coding: Start cat coding session` to create the webview.
+Run the `Rust MD: Open RustMd preview` to create the webview.
 
 ## Commands
 
 This extension provides the following commands:
 
-- `Cat Coding: Start cat coding session`: Creates and displays the Cat Coding webview.
+- `Rust MD: Open RustMd preview`: Creates and displays the Rust MD webview.
 
 ## Messages
 
-The Cat Coding webview can send the following messages to the extension:
+The Rust MD webview can send the following messages to the extension:
 
 - `alert`: Sent when the cat introduces a bug. The message includes the text '🐛  on line ' followed by the current line count.
 

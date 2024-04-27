@@ -1,6 +1,6 @@
 {
-	"name": "cat-coding",
-	"description": "Cat Coding - A Webview API Sample",
+	"name": "rust-md",
+	"description": "Rust md - a rustmd previewer",
 	"version": "0.0.1",
 	"publisher": "vscode-samples",
 	"private": true,
@@ -23,8 +23,8 @@
 		"commands": [
 			{
 				"command": "rustmd.start",
-				"title": "Start cat coding session",
-				"category": "Cat Coding"
+				"title": "Open RustMd preview",
+				"category": "Rust MD"
 			}
 		]
 	},
