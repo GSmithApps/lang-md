@@ -197,13 +197,13 @@ function renderContent(input_text: string) {
             // set the background color to gray if we are in debug mode
 			const colorDebugStyle = colordebug ? 'background-color: lightgray;' : '';
 
-			html_string += `<pre style="margin: 0px; padding: 0px; ${colorDebugStyle}"><code class="language-rust">${' '.repeat(spaces)}</code></pre>`;
+			html_string += `<pre style="margin: 0px; padding: 0px; ${colorDebugStyle}"><code style="margin: 0px; padding: 0px;" class="language-rust">${' '.repeat(spaces)}</code></pre>`;
             
             if (trimmedLine.startsWith('$')) {
 
 				const codeColorDebugStyle = colordebug ? 'background-color: lightcoral;' : '';
 
-				html_string += `<pre style="margin: 0px; padding: 0px; ${codeColorDebugStyle}"><code class="language-rust">${trimmedLine.slice(2)}</code></pre>`;
+				html_string += `<pre style="margin: 0px; padding: 0px; ${codeColorDebugStyle}"><code style="margin: 0px; padding: 0px;" class="language-rust">${trimmedLine.slice(2)}</code></pre>`;
                 
                 // Adding an empty line after each code block might be unnecessary with `<pre>`, but if needed:
                 // html_string += '<br>';
