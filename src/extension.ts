@@ -206,7 +206,7 @@ function renderContent(input_text: string) {
 				html_string += `<pre style="margin: 0px; padding: 0px; ${codeColorDebugStyle}"><code style="margin: 0px; padding: 0px;" class="language-rust">${trimmedLine.slice(2)}</code></pre>`;
                 
                 // Adding an empty line after each code block might be unnecessary with `<pre>`, but if needed:
-                // html_string += '<br>';
+                html_string += '<br>';
                 
             } else {
 
