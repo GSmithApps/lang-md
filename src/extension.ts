@@ -197,18 +197,22 @@ function renderContent(input_text: string) {
             // set the background color to gray if we are in debug mode
 			const colorDebugStyle = colordebug ? 'background-color: lightgray;' : '';
 
-			html_string += `<pre style="margin: 0px; padding: 0px; ${colorDebugStyle}"><code style="margin: 0px; padding: 0px;" class="language-rust">${' '.repeat(spaces)}</code></pre>`;
+			const indentation_blank_string = `<pre style="margin: 0px; padding: 0px; ${colorDebugStyle}"><code style="margin: 0px; padding: 0px;" class="language-rust">${' '.repeat(spaces)}</code></pre>`;
             
             if (trimmedLine.startsWith('$')) {
-
+				
 				const codeColorDebugStyle = colordebug ? 'background-color: lightcoral;' : '';
-
+	
+				html_string += indentation_blank_string;
+				
 				html_string += `<pre style="margin: 0px; padding: 0px; ${codeColorDebugStyle}"><code style="margin: 0px; padding: 0px;" class="language-rust">${trimmedLine.slice(2)}</code></pre>`;
                 
                 // Adding an empty line after each code block might be unnecessary with `<pre>`, but if needed:
                 html_string += '<br>';
                 
             } else {
+	
+				html_string += indentation_blank_string;
 
 				const textDebugStyle = colordebug ? 'background-color: lightblue;' : '';
                 
@@ -216,7 +220,7 @@ function renderContent(input_text: string) {
                 
                 const nextlineTrimmed = lines[i + 1].trim();
                 
-                if (nextlineTrimmed === '' || nextlineTrimmed.startsWith('$')) {
+                if (!isTrimmedLineNaturalLanguage(nextlineTrimmed)) {
                     
 					html_string += `<span style="${textDebugStyle}">` + trimmedLine + '</span>';
 					html_string += '<br>';
@@ -237,3 +241,7 @@ function renderContent(input_text: string) {
 
 }
 
+// natural language line if not blank and not starting with a $ sign
+function isTrimmedLineNaturalLanguage(line: string) {
+	return line !== '' && !line.startsWith('$');
+}

@@ -49,15 +49,9 @@ The Rust MD webview can send the following messages to the extension:
 
 # old
 
-open the devtools with option+cmd+c
-
-run the following `python -m http.server 8000`
-
-nav to `http://localhost:8000`
-
 todo:
-- all that's left is moving over extension.js
-- put it in a vscode extension
+
+- if we have english text that's indented, it puts the indentation spaces there
 - code wrapping for newline. for example, `fn divide`...
   it currently makes everything shrink or grow at its mercy
 - if the code ends on something like `$ }`, then it won't
