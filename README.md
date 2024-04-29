@@ -53,3 +53,5 @@ todo:
 
 - code wrapping for newline. for example, `fn divide`...
   it currently makes everything shrink or grow at its mercy
+- Prism.highlightAll();
+

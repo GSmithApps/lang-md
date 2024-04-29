@@ -4,8 +4,8 @@ If the divisor is zero, it returns an error.
 
 $ fn divide(numerator: f64, denominator: f64) -> Result<f64, &'static str> {
 
-    Check if the denominator is not zero.
-    Here's an extra line
+    Check if the denominator
+    is not zero.
 
     $ if denominator != 0.0 {
         
@@ -18,7 +18,9 @@ $ fn divide(numerator: f64, denominator: f64) -> Result<f64, &'static str> {
         If it's zero, return an error indicating division by zero.
 
         $ Err("Cannot divide by zero")
+
     $ }
+
 $ }
 
 Function to describe a number:
