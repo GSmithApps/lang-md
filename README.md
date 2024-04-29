@@ -54,6 +54,3 @@ todo:
 - if we have english text that's indented, it puts the indentation spaces there
 - code wrapping for newline. for example, `fn divide`...
   it currently makes everything shrink or grow at its mercy
-- if the code ends on something like `$ }`, then it won't
-  render that line. it might have something to do with
-  the break statement

@@ -216,20 +216,24 @@ function renderContent(input_text: string) {
 
 				const textDebugStyle = colordebug ? 'background-color: lightblue;' : '';
                 
-                if (i === lines.length - 1) {break;}
+                if (i === lines.length - 1) {
+					html_string += `<span style="${textDebugStyle}">` + trimmedLine + '</span>';
+					break;
+				}
                 
                 const nextlineTrimmed = lines[i + 1].trim();
                 
                 if (!isTrimmedLineNaturalLanguage(nextlineTrimmed)) {
                     
 					html_string += `<span style="${textDebugStyle}">` + trimmedLine + '</span>';
-					html_string += '<br>';
                     
                 } else {
 					
 					html_string += `<span style="${textDebugStyle}">` + trimmedLine + " " +  '</span>';
                     
                 }
+
+				if (!isTrimmedLineNaturalLanguage(nextlineTrimmed)) {html_string += '<br>';}
                 
             }
 
