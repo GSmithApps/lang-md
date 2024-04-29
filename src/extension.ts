@@ -66,7 +66,7 @@ class RustMdPanel {
 		const panel = vscode.window.createWebviewPanel(
 			RustMdPanel.viewType,
 			'Rust MD',
-			column || vscode.ViewColumn.One,
+			column || vscode.ViewColumn.Two,
 			getWebviewOptions(extensionUri),
 		);
 
@@ -211,28 +211,22 @@ function renderContent(input_text: string) {
                 html_string += '<br>';
                 
             } else {
-	
-				html_string += indentation_blank_string;
-
+				
 				const textDebugStyle = colordebug ? 'background-color: lightblue;' : '';
                 
-                if (i === lines.length - 1) {
-					html_string += `<span style="${textDebugStyle}">` + trimmedLine + '</span>';
-					break;
-				}
-                
-                const nextlineTrimmed = lines[i + 1].trim();
-                
-                if (!isTrimmedLineNaturalLanguage(nextlineTrimmed)) {
-                    
-					html_string += `<span style="${textDebugStyle}">` + trimmedLine + '</span>';
-                    
-                } else {
+				if (i === 0 || !isTrimmedLineNaturalLanguage(lines[i - 1].trim())) {
 					
-					html_string += `<span style="${textDebugStyle}">` + trimmedLine + " " +  '</span>';
-                    
-                }
+					html_string += indentation_blank_string + `<span style="${textDebugStyle}">` + trimmedLine + '</span>';
+					
+				} else {
 
+					html_string += `<span style="${textDebugStyle}">` + " " + trimmedLine + '</span>';
+
+				}
+				
+				if (i === lines.length - 1) {break;}
+				
+				const nextlineTrimmed = lines[i + 1].trim();
 				if (!isTrimmedLineNaturalLanguage(nextlineTrimmed)) {html_string += '<br>';}
                 
             }
