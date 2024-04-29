@@ -51,6 +51,5 @@ The Rust MD webview can send the following messages to the extension:
 
 todo:
 
-- if we have english text that's indented, it puts the indentation spaces there
 - code wrapping for newline. for example, `fn divide`...
   it currently makes everything shrink or grow at its mercy
