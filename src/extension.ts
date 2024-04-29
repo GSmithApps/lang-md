@@ -197,7 +197,7 @@ function renderContent(input_text: string) {
             // set the background color to gray if we are in debug mode
 			const colorDebugStyle = colordebug ? 'background-color: lightgray;' : '';
 
-			const indentation_blank_string = `<pre style="margin: 0px; padding: 0px; ${colorDebugStyle}"><code style="margin: 0px; padding: 0px;" class="language-rust">${' '.repeat(spaces)}</code></pre>`;
+			const indentation_blank_string = `<pre style="margin: 0px; padding: 0px; background-color: var(--vscode-editor-background); ${colorDebugStyle}"><code style="margin: 0px; padding: 0px; background-color: var(--vscode-editor-background);" class="language-rust">${' '.repeat(spaces)}</code></pre>`;
             
             if (trimmedLine.startsWith('$')) {
 				
@@ -205,9 +205,8 @@ function renderContent(input_text: string) {
 	
 				html_string += indentation_blank_string;
 				
-				html_string += `<pre style="margin: 0px; padding: 0px; ${codeColorDebugStyle}"><code style="margin: 0px; padding: 0px;" class="language-rust">${trimmedLine.slice(2)}</code></pre>`;
+				html_string += `<pre style="margin: 0px; padding: 0px; background-color: var(--vscode-editor-background); ${codeColorDebugStyle}"><code style="margin: 0px; padding: 0px; background-color: var(--vscode-editor-background);" class="language-rust">${trimmedLine.slice(2)}</code></pre>`;
                 
-                // Adding an empty line after each code block might be unnecessary with `<pre>`, but if needed:
                 html_string += '<br>';
                 
             } else {
