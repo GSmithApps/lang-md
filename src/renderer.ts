@@ -33,7 +33,7 @@ export function renderContent(input_text: string) {
 	
 				html_string += indentation_blank_string;
 				
-				html_string += `<pre style="margin: 0px; padding: 0px; background-color: var(--vscode-editor-background); ${codeColorDebugStyle}"><code style="margin: 0px; padding: 0px; background-color: var(--vscode-editor-background);" class="language-rust">${trimmedLine.slice(2)}</code></pre>`;
+				html_string += `<pre style="margin: 0px; padding: 0px; ${codeColorDebugStyle}"><code style="margin: 0px; padding: 0px;" class="language-rust">${trimmedLine.slice(2)}</code></pre>`;
                 
                 html_string += '<br>';
                 
