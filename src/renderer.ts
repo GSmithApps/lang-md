@@ -25,7 +25,7 @@ export function renderContent(input_text: string) {
             // set the background color to gray if we are in debug mode
 			const colorDebugStyle = colordebug ? 'background-color: lightgray;' : '';
 
-			const indentation_blank_string = `<pre style="margin: 0px; padding: 0px; background-color: var(--vscode-editor-background); ${colorDebugStyle}"><code style="margin: 0px; padding: 0px; background-color: var(--vscode-editor-background);" class="language-rust">${' '.repeat(spaces)}</code></pre>`;
+			const indentation_blank_string = `<pre style="margin: 0px; padding: 0px; ${colorDebugStyle}"><code style="margin: 0px; padding: 0px; background-color: var(--vscode-editor-background);" class="language-rust">${' '.repeat(spaces)}</code></pre>`;
             
             if (trimmedLine.startsWith('$')) {
 				
