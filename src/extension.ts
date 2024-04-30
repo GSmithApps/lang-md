@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import hljs from 'highlight.js'; // ES6 import
+
 
 // app.ts
 import { renderContent } from './renderer';
@@ -144,8 +146,8 @@ class RustMdPanel {
         const text = editor ? renderContent(editor.document.getText()) : 'No active editor';
 		
 		this._panel.webview.html = `<!DOCTYPE html>
-			<html lang="en">
-			<head>
+		<html lang="en">
+		<head>
 			<meta charset="UTF-8">
 
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -153,17 +155,18 @@ class RustMdPanel {
 			<link href="${stylesResetUri}" rel="stylesheet">
 			<link href="${stylesMainUri}" rel="stylesheet">
 			<link href="${myStylesMainUri}" rel="stylesheet">
-			
-			<title>Rust MD</title>
+			<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css" rel="stylesheet">
+			<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
 			</head>
 			<body>
-
-			<div>${text}</div>
 			
-			</body>
-			</html>`;
-
-		return;
+			<div>${text}</div>
+			<script>hljs.highlightAll();</script>
+			
+		</body>
+		</html>`;
+	
+	return;
 	}
 }
 
