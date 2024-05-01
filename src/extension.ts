@@ -13,15 +13,6 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 }
 
-function getWebviewOptions(extensionUri: vscode.Uri): vscode.WebviewOptions {
-	return {
-		// Enable javascript in the webview
-		enableScripts: true,
-
-		// And restrict the webview to only loading content from our extension's `media` directory.
-		localResourceRoots: [vscode.Uri.joinPath(extensionUri, 'media')]
-	};
-}
 
 /**
  * Manages rustmd webview panels
@@ -57,16 +48,17 @@ class RustMdPanel {
 				RustMdPanel.viewType,
 				'Rust MD',
 				column || vscode.ViewColumn.Two,
-				getWebviewOptions(extensionUri),
+				{
+					// Enable javascript in the webview
+					enableScripts: true,
+					// And restrict the webview to only loading content from our extension's `media` directory.
+					localResourceRoots: [vscode.Uri.joinPath(extensionUri, 'media')]
+				},
 			);
 	
 			RustMdPanel.currentPanel = new RustMdPanel(panel, extensionUri);
 		}
 
-	}
-
-	public static revive(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
-		RustMdPanel.currentPanel = new RustMdPanel(panel, extensionUri);
 	}
 
 	private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
