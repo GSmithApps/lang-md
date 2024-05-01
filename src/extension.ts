@@ -48,6 +48,9 @@ class RustMdPanel {
 
 	private readonly _panel: vscode.WebviewPanel;
 	private readonly _extensionUri: vscode.Uri;
+	private readonly stylesResetUri: vscode.Uri;
+	private readonly stylesMainUri: vscode.Uri;
+	private readonly myStylesMainUri: vscode.Uri;
 	private _disposables: vscode.Disposable[] = [];
 
 	public static createOrShow(extensionUri: vscode.Uri) {
@@ -80,7 +83,18 @@ class RustMdPanel {
 
 	private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
 		this._panel = panel;
+		this._panel.title = "RustMd Panel Title";
 		this._extensionUri = extensionUri;
+
+		// Local path to main script and css styles to run in the webview
+		const styleResetPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css');
+		const stylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css');
+		const myStylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'styles.css');
+		
+		// And the uri we use to load this script and styles in the webview
+		this.stylesResetUri = this._panel.webview.asWebviewUri(styleResetPath);
+		this.stylesMainUri = this._panel.webview.asWebviewUri(stylesPathMainPath);
+		this.myStylesMainUri = this._panel.webview.asWebviewUri(myStylesPathMainPath);
 
 		// Set the webview's initial html content
 		this._update();
@@ -117,19 +131,6 @@ class RustMdPanel {
 	}
 
 	private _update() {
-		const webview = this._panel.webview;
-
-		this._panel.title = "RustMd Panel Title";
-		
-		// Local path to main script and css styles to run in the webview
-		const styleResetPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css');
-		const stylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css');
-		const myStylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'styles.css');
-		
-		// And the uri we use to load this script and styles in the webview
-		const stylesResetUri = webview.asWebviewUri(styleResetPath);
-		const stylesMainUri = webview.asWebviewUri(stylesPathMainPath);
-		const myStylesMainUri = webview.asWebviewUri(myStylesPathMainPath);
 
         // Get the active text editor's content
         const editor = vscode.window.activeTextEditor;
@@ -142,9 +143,9 @@ class RustMdPanel {
 
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			
-			<link href="${stylesResetUri}" rel="stylesheet">
-			<link href="${stylesMainUri}" rel="stylesheet">
-			<link href="${myStylesMainUri}" rel="stylesheet">
+			<link href="${this.stylesResetUri}" rel="stylesheet">
+			<link href="${this.stylesMainUri}" rel="stylesheet">
+			<link href="${this.myStylesMainUri}" rel="stylesheet">
 			<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css" rel="stylesheet">
 			<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
 			</head>
