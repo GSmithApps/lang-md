@@ -16,7 +16,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onWebviewPanel:catCoding"
+		"onWebviewPanel:rustMD"
 	],
 	"main": "./out/extension.js",
 	"contributes": {

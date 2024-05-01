@@ -44,7 +44,7 @@ class RustMdPanel {
 	 */
 	public static currentPanel: RustMdPanel | undefined;
 
-	public static readonly viewType = 'catCoding';
+	public static readonly viewType = 'rustMD';
 
 	private readonly _panel: vscode.WebviewPanel;
 	private readonly _extensionUri: vscode.Uri;
@@ -58,18 +58,20 @@ class RustMdPanel {
 		// If we already have a panel, show it.
 		if (RustMdPanel.currentPanel) {
 			RustMdPanel.currentPanel._panel.reveal(column);
-			return;
+
+		} else {
+
+			// Otherwise, create a new panel.
+			const panel = vscode.window.createWebviewPanel(
+				RustMdPanel.viewType,
+				'Rust MD',
+				column || vscode.ViewColumn.Two,
+				getWebviewOptions(extensionUri),
+			);
+	
+			RustMdPanel.currentPanel = new RustMdPanel(panel, extensionUri);
 		}
 
-		// Otherwise, create a new panel.
-		const panel = vscode.window.createWebviewPanel(
-			RustMdPanel.viewType,
-			'Rust MD',
-			column || vscode.ViewColumn.Two,
-			getWebviewOptions(extensionUri),
-		);
-
-		RustMdPanel.currentPanel = new RustMdPanel(panel, extensionUri);
 	}
 
 	public static revive(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
@@ -98,18 +100,6 @@ class RustMdPanel {
 			this._disposables
 		);
 
-		// Handle messages from the webview
-		this._panel.webview.onDidReceiveMessage(
-			message => {
-				switch (message.command) {
-					case 'alert':
-						vscode.window.showErrorMessage(message.text);
-						return;
-				}
-			},
-			null,
-			this._disposables
-		);
 	}
 
 	public dispose() {
