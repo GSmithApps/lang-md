@@ -11,18 +11,6 @@ export function activate(context: vscode.ExtensionContext) {
 			RustMdPanel.createOrShow(context.extensionUri);
 		})
 	);
-
-	if (vscode.window.registerWebviewPanelSerializer) {
-		// Make sure we register a serializer in activation event
-		vscode.window.registerWebviewPanelSerializer(RustMdPanel.viewType, {
-			async deserializeWebviewPanel(webviewPanel: vscode.WebviewPanel, state: any) {
-				console.log(`Got state: ${state}`);
-				// Reset the webview options so we use latest uri for `localResourceRoots`.
-				webviewPanel.webview.options = getWebviewOptions(context.extensionUri);
-				RustMdPanel.revive(webviewPanel, context.extensionUri);
-			}
-		});
-	}
 }
 
 function getWebviewOptions(extensionUri: vscode.Uri): vscode.WebviewOptions {
