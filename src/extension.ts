@@ -48,9 +48,9 @@ class RustMdPanel {
 
 	private readonly _panel: vscode.WebviewPanel;
 	private readonly _extensionUri: vscode.Uri;
-	private readonly stylesResetUri: vscode.Uri;
-	private readonly stylesMainUri: vscode.Uri;
-	private readonly myStylesMainUri: vscode.Uri;
+	private readonly _stylesResetUri: vscode.Uri;
+	private readonly _stylesMainUri: vscode.Uri;
+	private readonly _myStylesMainUri: vscode.Uri;
 	private _disposables: vscode.Disposable[] = [];
 
 	public static createOrShow(extensionUri: vscode.Uri) {
@@ -92,9 +92,9 @@ class RustMdPanel {
 		const myStylesPathMainPath = vscode.Uri.joinPath(this._extensionUri, 'media', 'styles.css');
 		
 		// And the uri we use to load this script and styles in the webview
-		this.stylesResetUri = this._panel.webview.asWebviewUri(styleResetPath);
-		this.stylesMainUri = this._panel.webview.asWebviewUri(stylesPathMainPath);
-		this.myStylesMainUri = this._panel.webview.asWebviewUri(myStylesPathMainPath);
+		this._stylesResetUri = this._panel.webview.asWebviewUri(styleResetPath);
+		this._stylesMainUri = this._panel.webview.asWebviewUri(stylesPathMainPath);
+		this._myStylesMainUri = this._panel.webview.asWebviewUri(myStylesPathMainPath);
 
 		// Set the webview's initial html content
 		this._update();
@@ -143,9 +143,9 @@ class RustMdPanel {
 
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			
-			<link href="${this.stylesResetUri}" rel="stylesheet">
-			<link href="${this.stylesMainUri}" rel="stylesheet">
-			<link href="${this.myStylesMainUri}" rel="stylesheet">
+			<link href="${this._stylesResetUri}" rel="stylesheet">
+			<link href="${this._stylesMainUri}" rel="stylesheet">
+			<link href="${this._myStylesMainUri}" rel="stylesheet">
 			<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css" rel="stylesheet">
 			<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
 			</head>
@@ -157,7 +157,7 @@ class RustMdPanel {
 		</body>
 		</html>`;
 	
-	return;
+		return;
 	}
 }
 
