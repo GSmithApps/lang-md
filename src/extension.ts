@@ -114,7 +114,9 @@ class RustMdPanel {
 
         // Get the active text editor's content
         const editor = vscode.window.activeTextEditor;
-        const text = editor ? renderContent(editor.document.getText()) : 'No active editor';
+		const fileExtension = editor ? editor.document.fileName.split('.').pop() : 'No active editor';
+		const language = fileExtension ? fileExtension.substring(0, fileExtension.length - 2) : 'none';
+        const text = editor ? renderContent(editor.document.getText(), language) : 'No active editor';
 		
 		this._panel.webview.html = `<!DOCTYPE html>
 		<html lang="en">

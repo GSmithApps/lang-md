@@ -1,5 +1,5 @@
 
-export function renderContent(input_text: string) {
+export function renderContent(input_text: string, language: string) {
 
 	let html_string = '';
 
@@ -25,7 +25,7 @@ export function renderContent(input_text: string) {
             // set the background color to gray if we are in debug mode
 			const colorDebugStyle = colordebug ? 'background-color: lightgray;' : '';
 
-			const indentation_blank_string = `<pre style="margin: 0px; padding: 0px; ${colorDebugStyle}"><code style="margin: 0px; padding: 0px; background-color: var(--vscode-editor-background);display: inline;" class="language-rust">${' '.repeat(spaces)}</code></pre>`;
+			const indentation_blank_string = `<pre style="margin: 0px; padding: 0px; ${colorDebugStyle}"><code style="margin: 0px; padding: 0px; background-color: var(--vscode-editor-background);display: inline;" class="language-${language}">${' '.repeat(spaces)}</code></pre>`;
             
             if (trimmedLine.startsWith('$')) {
 				
@@ -33,7 +33,7 @@ export function renderContent(input_text: string) {
 	
 				html_string += indentation_blank_string;
 				
-				html_string += `<pre style="margin: 0px; padding: 0px; ${codeColorDebugStyle}"><code style="margin: 0px; padding: 0px;display: inline;" class="language-rust">${trimmedLine.slice(2)}</code></pre>`;
+				html_string += `<pre style="margin: 0px; padding: 0px; ${codeColorDebugStyle}"><code style="margin: 0px; padding: 0px;display: inline;" class="language-${language}">${trimmedLine.slice(2)}</code></pre>`;
                 
                 html_string += '<br>';
                 
