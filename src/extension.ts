@@ -32,6 +32,16 @@ class RustMdPanel {
 	private readonly _myStylesMainUri: vscode.Uri;
 	private _disposables: vscode.Disposable[] = [];
 
+	private static mapTheme(theme: string) {
+		if (theme.includes('Dark Modern')) {
+			return 'vs2015';
+		} else if (theme.includes('Light Modern')) {
+			return 'vs';
+		} else {
+			return 'vs2015';
+		}
+	}
+
 	public static createOrShow(extensionUri: vscode.Uri) {
 		const column = vscode.window.activeTextEditor
 			? vscode.window.activeTextEditor.viewColumn
@@ -117,7 +127,9 @@ class RustMdPanel {
 		const fileExtension = editor ? editor.document.fileName.split('.').pop() : 'No active editor';
 		const language = fileExtension ? fileExtension.substring(0, fileExtension.length - 2) : 'none';
         const text = editor ? renderContent(editor.document.getText(), language) : 'No active editor';
-		
+		const currentTheme = vscode.workspace.getConfiguration().get<string>('workbench.colorTheme');
+		const theme = currentTheme ? RustMdPanel.mapTheme(currentTheme) : 'vs2015';
+
 		this._panel.webview.html = `<!DOCTYPE html>
 		<html lang="en">
 		<head>
@@ -128,7 +140,7 @@ class RustMdPanel {
 			<link href="${this._stylesResetUri}" rel="stylesheet">
 			<link href="${this._stylesMainUri}" rel="stylesheet">
 			<link href="${this._myStylesMainUri}" rel="stylesheet">
-			<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/vs2015.css" rel="stylesheet">
+			<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/${theme}.css" rel="stylesheet">
 			<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
 			</head>
 			<body>
