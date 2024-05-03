@@ -126,7 +126,7 @@ class RustMdPanel {
 			<link href="${this._stylesResetUri}" rel="stylesheet">
 			<link href="${this._stylesMainUri}" rel="stylesheet">
 			<link href="${this._myStylesMainUri}" rel="stylesheet">
-			<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css" rel="stylesheet">
+			<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/vs2015.css" rel="stylesheet">
 			<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
 			</head>
 			<body>
