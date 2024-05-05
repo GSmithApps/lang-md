@@ -57,7 +57,7 @@ class RustMdPanel {
 			const panel = vscode.window.createWebviewPanel(
 				RustMdPanel.viewType,
 				'Rust MD',
-				column || vscode.ViewColumn.Two,
+				column === 1 ? vscode.ViewColumn.Two : vscode.ViewColumn.One,
 				{
 					// Enable javascript in the webview
 					enableScripts: true,
@@ -104,6 +104,16 @@ class RustMdPanel {
 			this._disposables
 		);
 
+		vscode.window.onDidChangeActiveTextEditor(
+			editor => {
+				if (editor && this._panel.visible) {
+					// The active editor has changed. You can run your code here.
+					this._update();
+				}
+			},
+			null,
+			this._disposables
+		);
 	}
 
 	public dispose() {
