@@ -31,6 +31,7 @@ class RustMdPanel {
 	private readonly _stylesMainUri: vscode.Uri;
 	private readonly _myStylesMainUri: vscode.Uri;
 	private _disposables: vscode.Disposable[] = [];
+	private _debounceTimer?: NodeJS.Timeout;
 
 	private static mapTheme(theme: string) {
 		if (theme.includes('Dark Modern')) {
@@ -114,7 +115,23 @@ class RustMdPanel {
 			null,
 			this._disposables
 		);
+
+        vscode.workspace.onDidChangeTextDocument(
+            event => {
+                if (vscode.window.activeTextEditor && event.document === vscode.window.activeTextEditor.document) {
+                    this.debouncedUpdate(1000);
+                }
+            },
+            null,
+            this._disposables
+        );
+
 	}
+
+    private debouncedUpdate(delay: number) {
+        clearTimeout(this._debounceTimer);
+        this._debounceTimer = setTimeout(() => this._update(), delay);
+    }
 
 	public dispose() {
 		RustMdPanel.currentPanel = undefined;
