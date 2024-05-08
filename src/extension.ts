@@ -58,7 +58,7 @@ class RustMdPanel {
 			const panel = vscode.window.createWebviewPanel(
 				RustMdPanel.viewType,
 				'Rust MD',
-				column === 1 ? vscode.ViewColumn.Two : vscode.ViewColumn.One,
+				column ? column + 1 : vscode.ViewColumn.One,
 				{
 					// Enable javascript in the webview
 					enableScripts: true,
