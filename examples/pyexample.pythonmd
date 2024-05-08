@@ -1,0 +1,33 @@
+# Function to divide two numbers
+
+This function attempts to divide two numbers and returns the result.
+If the divisor is zero, it returns an error.
+
+Yeah this is an attempt to do the debouncing. I think it's
+working here too.
+
+$ def divide(numerator: float, denominator: float) -> float
+
+    Check if the denominator
+    is not zero.
+
+    $ if denominator != 0.0:
+        
+        If it's not zero, perform the division and return Ok.
+
+        $ return numerator / denominator
+        
+    $ else
+        
+        If it's zero, return an error indicating division by zero.
+
+        $ Raise Exception("Cannot divide by zero")
+
+
+Function to describe a number:
+
+This function takes a number and returns a string describing it.
+
+$ def describe_number(number: int) -> str
+
+    $ print(number)
