@@ -1,7 +1,5 @@
-# Rust MD
-
-This extension is part of literate programming -- it
-flips how we think about comments and code
+This vscode extension is part of literate programming -- it
+flips how we think about comments and code.
 
 In traditional
 programming, the code is written freely, but the comments are
