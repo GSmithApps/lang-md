@@ -1,25 +1,50 @@
 # Rust MD
 
-Run the `Rust MD: Open RustMd preview` to create the webview.
+This extension is part of literate programming -- it
+flips how we think about comments and code
 
-## Commands
+In traditional
+programming, the code is written freely, but the comments are
+clunky and have a symbol
+in front of them:
 
-This extension provides the following commands:
+```
+# this is a function to do some stuff
+def dostuff():
 
-- `Rust MD: Open RustMd preview`: Creates and displays the Rust MD webview.
+    # here is where we do stuff
+    print('hi')
+```
+
+But in this extension, that paradigm is flipped.  The
+comments can be written freely, and the code is what needs a symbol
+in front of it:
+
+```
+this is a function to do some stuff
+$ def dostuff():
+
+    here is where we do stuff
+    $ print('hi')
+```
 
 
-# old
+# Usage
 
-todo:
+The command is `Rust MD: Open RustMd preview` (in
+the command pallette).  This will open a panel similar
+to the markdown preview. 
 
-- code wrapping for newline. for example, `fn divide`...
-  it currently makes everything shrink or grow at its mercy
-- Prism.highlightAll();
-
-# For Developers
+# Contributors Running Locally
 
 - Open this example in VS Code 1.47+
 - `npm install`
 - `npm run watch` or `npm run compile`
 - `F5` to start debugging
+
+
+# ToDo
+
+- code wrapping for newline. for example, `fn divide`...
+  it currently makes everything shrink or grow at its mercy
+- bug with spans and indentation
