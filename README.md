@@ -1,3 +1,7 @@
+![image](demo.gif)
+
+# The Idea
+
 This vscode extension is part of literate programming -- it
 flips how we think about comments and code.
 
@@ -25,11 +29,6 @@ $ def dostuff():
     here is where we do stuff
     $ print('hi')
 ```
-
-# Demo
-
-![image](demo.gif)
-
 
 # Usage
 
