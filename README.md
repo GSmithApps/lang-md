@@ -26,6 +26,10 @@ $ def dostuff():
     $ print('hi')
 ```
 
+# Demo
+
+![image](demo.gif)
+
 
 # Usage
 
