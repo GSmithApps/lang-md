@@ -2,8 +2,6 @@
 
 # The Idea
 
-> **We need to merge this with the other repo**
-
 This vscode extension is part of literate programming -- it
 flips how we think about comments and code.
 
@@ -67,11 +65,12 @@ to the markdown preview.
 ## Install your extension
 
 * To start using your extension with Visual Studio Code copy it into the `<user home>/.vscode/extensions` folder and restart Code.
-* To share your extension with the world, read on https://code.visualstudio.com/docs about publishing an extension.
 
 
 ## publishing
 
-- `vsce publish`
-- [Check on the build here](https://marketplace.visualstudio.com/manage/publishers/grantsmith)
+- https://marketplace.visualstudio.com/manage/publishers/grantsmith
+- https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops
+- https://code.visualstudio.com/api/working-with-extensions/publishing-extension (`vsce publish`)
+
 - [link to scopes](https://macromates.com/manual/en/language_grammars)

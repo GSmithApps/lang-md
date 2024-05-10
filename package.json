@@ -3,7 +3,7 @@
 	"description": "Rust md - a rustmd previewer",
 	"displayName": "Rust MD",
 	"version": "0.0.1",
-	"publisher": "Grant Smith",
+	"publisher": "GrantSmith",
 	"private": true,
 	"license": "MIT",
 	"repository": {
