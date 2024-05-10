@@ -1,7 +1,7 @@
 {
     "name": "Hindent",
     "scopeName": "source.hin",
-    "fileTypes": ["rustmd"],
+    "fileTypes": ["rsmd"],
     "patterns": [
         {
             "name": "meta",

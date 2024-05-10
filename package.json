@@ -31,7 +31,7 @@
 		"languages": [{
 			"id": "hin",
 			"aliases": ["Hindent", "hin"],
-			"extensions": [".rustmd"],
+			"extensions": [".rsmd"],
 			"configuration": "./rusdmd-configuration.json"
 		  }],
 		  "grammars": [{
