@@ -1,10 +1,10 @@
 {
     "name": "Hindent",
     "scopeName": "source.hin",
-    "fileTypes": ["hin"],
+    "fileTypes": ["rustmd"],
     "patterns": [
         {
-            "name": "comment",
+            "name": "meta",
             "match": "^ *[^ \\$].*$"
         },
         {
@@ -39,7 +39,7 @@
             "match": "\\bself\\b"
         },
         {
-            "name": "storage.type",
+            "name": "entity.name.type",
             "match": "\\b(i32|i64|f32|f64|bool|char|str)\\b"
         },
         {

@@ -30,8 +30,8 @@
 		"languages": [{
 			"id": "hin",
 			"aliases": ["Hindent", "hin"],
-			"extensions": [".hin"],
-			"configuration": "./language-configuration.json"
+			"extensions": [".rustmd"],
+			"configuration": "./rusdmd-configuration.json"
 		  }],
 		  "grammars": [{
 			"language": "hin",
