@@ -1,19 +1,20 @@
 {
 	"name": "rust-md",
 	"description": "Rust md - a rustmd previewer",
+	"displayName": "Rust MD",
 	"version": "0.0.1",
-	"publisher": "vscode-samples",
+	"publisher": "Grant Smith",
 	"private": true,
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "https://github.com/GSmithApps/webview-sample"
 	},
 	"engines": {
 		"vscode": "^1.74.0"
 	},
 	"categories": [
-		"Other"
+		"Programming Languages"
 	],
 	"activationEvents": [
 		"onWebviewPanel:rustMD"
