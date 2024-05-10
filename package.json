@@ -26,7 +26,18 @@
 				"title": "Open RustMd preview",
 				"category": "Rust MD"
 			}
-		]
+		],
+		"languages": [{
+			"id": "hin",
+			"aliases": ["Hindent", "hin"],
+			"extensions": [".hin"],
+			"configuration": "./language-configuration.json"
+		  }],
+		  "grammars": [{
+			"language": "hin",
+			"scopeName": "source.hin",
+			"path": "./syntaxes/hin.tmLanguage.json"
+		  }]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

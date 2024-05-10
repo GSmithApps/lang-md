@@ -1,0 +1,64 @@
+{
+    "name": "Hindent",
+    "scopeName": "source.hin",
+    "fileTypes": ["hin"],
+    "patterns": [
+        {
+            "name": "comment",
+            "match": "^ *[^ \\$].*$"
+        },
+        {
+            "name": "comment",
+            "match": "^ *\\$"
+        },
+        {
+            "name": "string.quoted.double",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        {
+            "name": "keyword.operator",
+            "match": "\\+|-|\\*|/|%|==|!=|<|<=|>|>=|&&|\\|\\||!"
+        },
+        {
+            "name": "storage.type.function",
+            "match": "\\bfn\\b"
+        },
+        {
+            "name": "constant.language",
+            "match": "\\b(true|false)\\b"
+        },
+        {
+            "name": "variable.language",
+            "match": "\\bself\\b"
+        },
+        {
+            "name": "storage.type",
+            "match": "\\b(i32|i64|f32|f64|bool|char|str)\\b"
+        },
+        {
+            "name": "keyword.control",
+            "match": "\\b(if|else|for|while|loop|match|continue|break)\\b"
+        },
+        {
+            "name": "constant.numeric",
+            "match": "\\b-?[0-9]+(\\.[0-9]+)?\\b"
+        },        
+        {
+            "name": "variable",
+            "match": "\\b[a-zA-Z0-9_]+\\b"
+        }
+    ],
+    "repository": {
+        "code": {
+            "patterns": [
+            ]
+        }
+    }
+}
