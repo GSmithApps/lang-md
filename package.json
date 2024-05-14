@@ -32,12 +32,21 @@
 			"id": "hin",
 			"aliases": ["Hindent", "hin"],
 			"extensions": [".rsmd"],
-			"configuration": "./rusdmd-configuration.json"
+			"configuration": "./rustmd-configuration.json"
+			},{
+				"id": "xxy",
+				"aliases": ["xxy"],
+				"extensions": [".xxy"],
+				"configuration": "./rust-configuration.json"
 		  }],
 		  "grammars": [{
 			"language": "hin",
 			"scopeName": "source.hin",
 			"path": "./syntaxes/hin.tmLanguage.json"
+		  },{
+			"language": "xxy",
+			"scopeName": "source.rust",
+			"path": "./syntaxes/rust.tmLanguage.json"
 		  }]
 	},
 	"scripts": {
