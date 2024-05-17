@@ -28,26 +28,41 @@
 				"category": "Rust MD"
 			}
 		],
-		"languages": [{
-			"id": "hin",
-			"aliases": ["Hindent", "hin"],
-			"extensions": [".rsmd"],
-			"configuration": "./rustmd-configuration.json"
-			},{
+		"languages": [
+			{
+				"id": "hin",
+				"aliases": [
+					"Hindent",
+					"hin"
+				],
+				"extensions": [
+					".rsmd"
+				],
+				"configuration": "./rustmd-configuration.json"
+			},
+			{
 				"id": "xxy",
-				"aliases": ["xxy"],
-				"extensions": [".xxy"],
+				"aliases": [
+					"xxy"
+				],
+				"extensions": [
+					".xxy"
+				],
 				"configuration": "./rust-configuration.json"
-		  }],
-		  "grammars": [{
-			"language": "hin",
-			"scopeName": "source.hin",
-			"path": "./syntaxes/hin.tmLanguage.json"
-		  },{
-			"language": "xxy",
-			"scopeName": "source.rust",
-			"path": "./syntaxes/rust.tmLanguage.json"
-		  }]
+			}
+		],
+		"grammars": [
+			{
+				"language": "hin",
+				"scopeName": "source.hin",
+				"path": "./syntaxes/hin.tmLanguage.json"
+			},
+			{
+				"language": "xxy",
+				"scopeName": "source.rust",
+				"path": "./syntaxes/rust.tmLanguage.json"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -62,6 +77,7 @@
 		"@typescript-eslint/eslint-plugin": "^6.7.0",
 		"@typescript-eslint/parser": "^6.7.0",
 		"eslint": "^8.26.0",
+		"shiki": "^1.5.1",
 		"typescript": "^5.4.2"
 	},
 	"dependencies": {

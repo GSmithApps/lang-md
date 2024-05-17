@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import hljs from 'highlight.js'; // ES6 import
-
+import { getHighlighter, Highlighter } from 'shiki';
 
 // app.ts
 import { renderContent } from './renderer';
