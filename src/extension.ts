@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import hljs from 'highlight.js'; // ES6 import
 import { getHighlighter, Highlighter } from 'shiki';
 
 // app.ts
@@ -32,16 +31,6 @@ class RustMdPanel {
 	private readonly _myStylesMainUri: vscode.Uri;
 	private _disposables: vscode.Disposable[] = [];
 	private _debounceTimer?: NodeJS.Timeout;
-
-	private static mapTheme(theme: string) {
-		if (theme.includes('Dark Modern')) {
-			return 'vs2015';
-		} else if (theme.includes('Light Modern')) {
-			return 'vs';
-		} else {
-			return 'vs2015';
-		}
-	}
 
 	public static createOrShow(extensionUri: vscode.Uri) {
 		const column = vscode.window.activeTextEditor
@@ -155,7 +144,6 @@ class RustMdPanel {
 		const language = fileExtension ? fileExtension.substring(0, fileExtension.length - 2) : 'none';
         const text = editor ? renderContent(editor.document.getText(), language) : 'No active editor';
 		const currentTheme = vscode.workspace.getConfiguration().get<string>('workbench.colorTheme');
-		const theme = currentTheme ? RustMdPanel.mapTheme(currentTheme) : 'vs2015';
 
 		this._panel.webview.html = `<!DOCTYPE html>
 		<html lang="en">
@@ -167,13 +155,10 @@ class RustMdPanel {
 			<link href="${this._stylesResetUri}" rel="stylesheet">
 			<link href="${this._stylesMainUri}" rel="stylesheet">
 			<link href="${this._myStylesMainUri}" rel="stylesheet">
-			<link href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/${theme}.css" rel="stylesheet">
-			<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
 			</head>
 			<body>
-			
+			<!--{code}-->
 			<div>${text}</div>
-			<script>hljs.highlightAll();</script>
 			
 		</body>
 		</html>`;
