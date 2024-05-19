@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { BundledLanguage, BundledTheme, HighlighterGeneric, getHighlighter } from 'shiki';
+import { getHighlighter } from 'shiki';
 
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
